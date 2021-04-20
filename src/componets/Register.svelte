@@ -4,8 +4,7 @@
   import { getContext } from "svelte";
   import axios from "axios";
 
-  export let next: string = "/posts";
-  const apiUrl: string = getContext("http://localhost:1337");
+  export let next: string = "/";
   let registerError: string | null = null;
 
   let email = "";
@@ -16,22 +15,16 @@
   function register() {
         username = username.trim();
         password = password.trim();
-        cpassword = cpassword.trim();
         username = username.trim();
 
-        if (!username || !password || !cpassword || !username) {
-            registerError = "Fill out all fields!";
-            return;
-        }
-
-        if (password !== cpassword) {
-            registerError = "Passwords don't match";
+        if (!username || !password || !username) {
+            registerError = "Controlla tutti i campi";
             return;
         }
         registerError = null;
 
         axios
-            .post(apiUrl + "/auth/local/register", {
+            .post("http://localhost:1337/auth/local/register", {
                 email,
                 username,
                 password,
@@ -73,10 +66,11 @@
         >
           Registrazione
         </label>
-        <form method="#" action="#" class="mt-10">
+        <form class="mt-10" on:submit|preventDefault={register} in:fade>
           <div>
             <input
               type="text"
+              bind:value={username}
               placeholder="Username"
               class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
             />
@@ -85,6 +79,7 @@
           <div class="mt-7">
             <input
               type="email"
+              bind:value={email}
               placeholder="E-mail"
               class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
             />
@@ -93,6 +88,7 @@
           <div class="mt-7">
             <input
               type="password"
+              bind:value={password}
               placeholder="Password"
               class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
             />

@@ -1,49 +1,48 @@
 <script lang="ts">
-    import { link } from "svelte-spa-router";
+  import { link } from "svelte-spa-router";
 
-    import { fade } from "svelte/transition";
-    import { getContext } from "svelte";
-    import axios from "axios";
+  import { fade } from "svelte/transition";
+  import { getContext } from "svelte";
+  import axios from "axios";
 
-    export let next: string = "/posts";
-    const apiUrl: string = getContext("http://localhost:1337");
+  export let next: string = "/";
 
-    let loginError: string | null = null;
+  let loginError: string | null = null;
 
-    let username = "";
-    let password = "";
+  let username = "";
+  let password = "";
 
-    function login() {
-        username = username.trim();
-        password = password.trim();
+  function login() {
+    username = username.trim();
+    password = password.trim();
 
-        if (!username || !password) {
-            loginError = "Controlla tutti i campi!";
-            return;
-        }
-        loginError = null;
-
-        axios
-            .post(apiUrl + "/auth/local", {
-                identifier: username,
-                password,
-            })
-            .then(({ data }) => {
-                sessionStorage.setItem("JWT", data.jwt);
-                sessionStorage.setItem("user", JSON.stringify(data.user));
-                // Using window.location.href instead of router.redirect to refresh the page
-                // so that components like Navbar update too
-                window.location.href = next;
-            })
-            .catch((err) => {
-                if (err.response) {
-                    loginError = "";
-                    for (let message of err.response.data.message[0].messages) {
-                        loginError += `${message.message}\n`;
-                    }
-                } else loginError = err;
-            });
+    if (!username || !password) {
+      loginError = "Controlla tutti i campi!";
+      return;
     }
+    loginError = null;
+
+    axios
+      .post("http://localhost:1337/auth/local", {
+        identifier: username,
+        password,
+      })
+      .then(({ data }) => {
+        sessionStorage.setItem("JWT", data.jwt);
+        sessionStorage.setItem("user", JSON.stringify(data.user));
+        // Using window.location.href instead of router.redirect to refresh the page
+        // so that components like Navbar update too
+        window.location.href = next;
+      })
+      .catch((err) => {
+        if (err.response) {
+          loginError = "";
+          for (let message of err.response.data.message[0].messages) {
+            loginError += `${message.message}\n`;
+          }
+        } else loginError = err;
+      });
+  }
 </script>
 
 <!-- This is an example component -->
@@ -65,10 +64,20 @@
         >
           Login
         </label>
-        <form method="#" action="#" class="mt-10">
+        <form
+          method="#"
+          action="#"
+          class="mt-10"
+          on:submit|preventDefault={login}
+          in:fade
+        >
+          {#if loginError}
+            <p>{loginError} </p>
+          {/if}
           <div>
             <input
-              type="username"
+              type="text"
+              bind:value={username}
               placeholder="Username"
               class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
             />
@@ -77,6 +86,7 @@
           <div class="mt-7">
             <input
               type="password"
+              bind:value={password}
               placeholder="Password"
               class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
             />
