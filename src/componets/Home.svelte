@@ -2,14 +2,15 @@
   import { onMount } from "svelte";
   import { push } from "svelte-spa-router";
   import {fade, scale} from 'svelte/transition';
+  import { getUser } from "../auth";
 
   let schede = [];
 
   onMount(async () => {
     const res = await fetch(`http://localhost:1337/schedas?user_null=true`);  //far vedere schede senza utente collegato
     schede = await res.json();
-    console.log(schede);
   });
+
 </script>
 
 <section class="text-gray-600 body-font">

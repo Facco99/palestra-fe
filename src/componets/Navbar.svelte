@@ -46,7 +46,7 @@
       <a class="mr-5 hover:text-gray-900" use:link href="/schede">Schede Personalizzate</a>
       {:else}
       <!-- svelte-ignore a11y-invalid-attribute -->
-      <a class="mr-5 hover:text-gray-900" href="/login">Schede Personalizzate</a>
+      <a class="mr-5 hover:text-gray-900" use:link href="/login">Schede Personalizzate</a>
       {/if}
       <!-- svelte-ignore a11y-missing-attribute -->
       {#if sessionStorage.getItem("user")==null}
