@@ -1,5 +1,13 @@
-<script>
+<script lang="ts">
+
+  import { clear } from "../auth";
+
   import { link } from "svelte-spa-router";
+
+  const logout = (() => {
+      clear();
+      window.location.reload();
+  });
 </script>
 
 <header class="text-gray-600 body-font">
@@ -34,11 +42,18 @@
       <!-- svelte-ignore a11y-missing-attribute -->
       <a class="mr-5 hover:text-gray-900" use:link href="/">Home</a>
       <!-- svelte-ignore a11y-missing-attribute -->
-      <a class="mr-5 hover:text-gray-900" use:link href="/schede"
-        >Schede Personalizzate</a
-      >
+      {#if sessionStorage.getItem("user")!=null}
+      <a class="mr-5 hover:text-gray-900" use:link href="/schede">Schede Personalizzate</a>
+      {:else}
+      <!-- svelte-ignore a11y-invalid-attribute -->
+      <a class="mr-5 hover:text-gray-900" href="/login">Schede Personalizzate</a>
+      {/if}
       <!-- svelte-ignore a11y-missing-attribute -->
+      {#if sessionStorage.getItem("user")==null}
       <a class="mr-5 hover:text-gray-900" use:link href="/login">Login</a>
+      {:else}
+      <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded opacity-50" on:click={() => logout()}>Logout</button>
+      {/if}
     </nav>
   </div>
 </header>

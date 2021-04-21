@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { push } from "svelte-spa-router";
+  import {fade, scale} from 'svelte/transition';
 
   let schede = [];
 
@@ -23,7 +24,7 @@
         Benvenuto!!
       </h1>
     </div>
-    <div class="flex flex-wrap -m-4">
+    <div class="flex flex-wrap -m-4" in:fade out:scale|local>
       {#if schede.length > 0}
         {#each schede as scheda}
           <div class="p-4 md:w-1/3">
