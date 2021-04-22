@@ -6,6 +6,8 @@
 
   let schede = [];
 
+  let user = JSON.parse(sessionStorage.getItem("user"));
+
   onMount(async () => {
     const res = await fetch(`http://localhost:1337/schedas?user_null=true`);  //far vedere schede senza utente collegato
     schede = await res.json();
@@ -21,9 +23,15 @@
       >
         Palestra 4.0
       </h2>
+      {#if sessionStorage.getItem("user")==null}
       <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">
         Benvenuto!!
       </h1>
+      {:else}
+      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">
+        Benvenuto {user.username}!!
+      </h1>
+      {/if}
     </div>
     <div class="flex flex-wrap -m-4" in:fade out:scale|local>
       {#if schede.length > 0}
