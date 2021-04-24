@@ -4,10 +4,14 @@
     import { push } from "svelte-spa-router";
     import {fade, scale} from 'svelte/transition';
     import { getToken } from "../auth";
+    import Tabs from "../shared/Tabs.svelte";
   
     let schede = [];
   
     let user = JSON.parse(sessionStorage.getItem("user"));
+
+    let items=['Visualizza le tue schede', 'Crea una scheda personalizzata'];
+	  let activeItem = 'Visualizza le tue schede';
   
     onMount(async () => {
       axios.get(
@@ -22,8 +26,14 @@
             })
     });
 
+    const tabChange = (e) => {
+		activeItem = e.detail;
+	}
+
 </script>
 
+<Tabs {activeItem} {items} on:tabChange={tabChange}/>
+{#if activeItem==="Visualizza le tue schede"}
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap -m-4" in:fade out:scale|local>
@@ -78,6 +88,10 @@
     </div>
   </div>
 </section>
+{:else if activeItem==="Crea una scheda personalizzata"}
+sei in crea scheda
+{/if}
+
 
 <style>
   section {
