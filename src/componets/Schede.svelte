@@ -137,13 +137,13 @@
             </div>
           {/each}
         {:else}
-          <p class="flex-auto">Non hai schede personalizzate</p>
+          <p>Non hai schede personalizzate</p>
         {/if}
       </div>
     </div>
   </section>
 {:else if activeItem === "Crea una scheda personalizzata"}
-  <div class="font-sans">
+  <div class="font-sans margin-bottom">
     <div class="relative min-h-screen flex flex-col items-center">
       <div class="relative sm:max-w-sm w-full">
         <div class="w-full h-full rounded-3xl absolute  transform -rotate-6" />
@@ -151,7 +151,13 @@
         <div
           class="relative w-full rounded-3xl  px-6 py-4 bg-indigo-100 shadow-md"
         >
-          <form method="#" action="#" class="mt-10" in:fade on:submit={() => aggiungi()}>
+          <form
+            method="#"
+            action="#"
+            class="mt-10"
+            in:fade
+            on:submit={() => aggiungi()}
+          >
             <div>
               <input
                 type="text"
@@ -200,5 +206,8 @@
   }
   .margin-left {
     margin-left: 170px;
+  }
+  .margin-bottom {
+    margin-bottom: -25%;
   }
 </style>
