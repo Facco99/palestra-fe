@@ -149,14 +149,14 @@
         <div class="w-full h-full rounded-3xl absolute  transform -rotate-6" />
         <div class="w-full h-full rounded-3xl absolute  transform rotate-6" />
         <div
-          class="relative w-full rounded-3xl  px-6 py-4 bg-indigo-100 shadow-md"
+          class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md"
         >
           <form
             method="#"
             action="#"
             class="mt-10"
             in:fade
-            on:submit={() => aggiungi()}
+            on:submit|preventDefault={() => aggiungi()}
           >
             <div>
               <input

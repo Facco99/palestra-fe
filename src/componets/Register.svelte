@@ -54,10 +54,10 @@
   >
     <div class="relative sm:max-w-sm w-full">
       <div
-        class="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"
+        class="card bg-indigo-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"
       />
       <div
-        class="card bg-red-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"
+        class="card bg-black shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"
       />
       <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
         <label
@@ -72,7 +72,7 @@
               type="text"
               bind:value={username}
               placeholder="Username"
-              class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+              class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-indigo-100 focus:bg-indigo-100 focus:ring-0"
             />
           </div>
 
@@ -81,7 +81,7 @@
               type="email"
               bind:value={email}
               placeholder="E-mail"
-              class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+              class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-indigo-100 focus:bg-indigo-100 focus:ring-0"
             />
           </div>
 
@@ -90,7 +90,7 @@
               type="password"
               bind:value={password}
               placeholder="Password"
-              class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+              class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-indigo-100 focus:bg-indigo-100 focus:ring-0"
             />
           </div>
 
@@ -108,7 +108,7 @@
 
           <div class="mt-7">
             <button
-              class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+              class="bg-indigo-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
             >
               Registrati
             </button>
@@ -121,7 +121,7 @@
                 >Sei già registrato?</label
               >
               <a
-                class="w-full text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+                class="w-full text-indigo-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                 use:link
                 href="/login"
               >

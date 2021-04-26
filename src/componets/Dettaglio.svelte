@@ -25,7 +25,7 @@
       <div class="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
         {#each esercizio.immagine as img}
         <div class="w-6/12 sm:w-4/12 px-4">
-          <img src="http://localhost:1337{img.formats.small.url}" alt="{esercizio.nome}" class="shadow max-w-full h-auto align-middle border-none">
+          <img src="http://localhost:1337{img.formats.thumbnail.url}" alt="{esercizio.nome}" class="shadow max-w-full h-auto align-middle border-none">
         </div>
         {/each}
         <div class="flex-grow sm:pl-6 mt-6 sm:mt-0">
