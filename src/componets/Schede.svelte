@@ -6,6 +6,8 @@
   import { fade, scale } from "svelte/transition";
   import { getToken } from "../auth";
   import Tabs from "../shared/Tabs.svelte";
+  import Modal from 'svelte-simple-modal';
+  import Modifica from "./Modifica.svelte";
 
   let schede = [];
 
@@ -126,8 +128,11 @@
                       <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                   </a>
+                  <Modal>
+                    <Modifica on:click={() => push(`/modifica/${scheda.id}`)}/>
+                  </Modal>
                   <button
-                    class="bg-purple-700 text-white rounded p-2 margin-left"
+                    class="bg-purple-700 text-white rounded p-2"
                     on:click={() => eliminaScheda(scheda.id)}
                   >
                     Elimina
@@ -203,9 +208,6 @@
   section {
     margin-top: -80px;
     margin-bottom: -80px;
-  }
-  .margin-left {
-    margin-left: 170px;
   }
   .margin-bottom {
     margin-bottom: -25%;

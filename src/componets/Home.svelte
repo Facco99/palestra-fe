@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import { push } from "svelte-spa-router";
   import {fade, scale} from 'svelte/transition';
-  import { getUser } from "../auth";
 
   let schede = [];
 

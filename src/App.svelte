@@ -1,48 +1,53 @@
 <script lang="ts">
-	import Router from 'svelte-spa-router';
+  import Router from "svelte-spa-router";
 
-	import Footer from "./componets/Footer.svelte";
-	import Navbar from "./componets/Navbar.svelte";
-	import Home from "./componets/Home.svelte";
-	import Schede from "./componets/Schede.svelte";
-	import Login from "./componets/Login.svelte";
-	import Register from "./componets/Register.svelte";
-    import Dettaglio from './componets/Dettaglio.svelte';
+  import Footer from "./componets/Footer.svelte";
+  import Navbar from "./componets/Navbar.svelte";
+  import Home from "./componets/Home.svelte";
+  import Schede from "./componets/Schede.svelte";
+  import Login from "./componets/Login.svelte";
+  import Register from "./componets/Register.svelte";
+  import Dettaglio from "./componets/Dettaglio.svelte";
 
-	import {location} from 'svelte-spa-router';
+  import { location } from "svelte-spa-router";
+  import ModaleModifica from "./componets/ModaleModifica.svelte";
 
-	const routes = {
+  const routes = {
     // Exact path
-    '/': Home,
+    "/": Home,
 
     // Using named parameters, with last being optional
-    '/schede': Schede,
+    "/schede": Schede,
 
     // Wildcard parameter
-    '/login': Login,
+    "/login": Login,
 
     // Wildcard parameter
-    '/register': Register,
+    "/register": Register,
 
     // Wildcard parameter
-    '/dettaglio/:id': Dettaglio,
+    "/dettaglio/:id": Dettaglio,
+
+    // Wildcard parameter
+    "/modifica/:id": ModaleModifica,
 
     // Catch-all
     // This is optional, but if present it must be the last
-    '*': Home,
-}
+    "*": Home,
+  };
 </script>
-{#if $location!=("/login")}
-    {#if $location!=("/register")}
-        <Navbar />
-    {/if}
+
+{#if $location != "/login"}
+  {#if $location != "/register"}
+    <Navbar />
+  {/if}
 {/if}
 
 <main>
-	<Router {routes}/>
+  <Router {routes} />
 </main>
-{#if $location!=("/login")}
-    {#if $location!=("/register")}
-        <Footer />
-    {/if}
+{#if $location != "/login"}
+  {#if $location != "/register"}
+    <Footer />
+  {/if}
 {/if}
