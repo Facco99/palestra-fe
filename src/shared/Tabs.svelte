@@ -37,8 +37,8 @@
     }
 
     .active{
-        color: #b53ef0;
-        border-bottom: 2px solid #b53ef0;
+        color: #a716e0;
+        border-bottom: 2px solid #a716e0;
         padding-bottom: 8px;
     }
 </style>

@@ -6,7 +6,7 @@
   import { fade, scale } from "svelte/transition";
   import { getToken } from "../auth";
   import Tabs from "../shared/Tabs.svelte";
-  import Modal from 'svelte-simple-modal';
+  import Modal from "svelte-simple-modal";
   import Modifica from "./Modifica.svelte";
 
   let schede = [];
@@ -82,10 +82,10 @@
 
 <Tabs {activeItem} {items} on:tabChange={tabChange} />
 {#if activeItem === "Visualizza le tue schede"}
-  <section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-wrap -m-4" in:fade out:scale|local>
-        {#if schede.length > 0}
+  {#if schede.length > 0}
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-wrap -m-4" in:fade out:scale|local>
           {#each schede as scheda}
             <div class="p-4 md:w-1/3">
               <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
@@ -129,7 +129,7 @@
                     </svg>
                   </a>
                   <Modal>
-                    <Modifica on:click={() => push(`/modifica/${scheda.id}`)}/>
+                    <Modifica on:click={() => push(`/modifica/${scheda.id}`)} />
                   </Modal>
                   <button
                     class="bg-purple-700 text-white rounded p-2"
@@ -141,12 +141,12 @@
               </div>
             </div>
           {/each}
-        {:else}
-          <p>Non hai schede personalizzate</p>
-        {/if}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  {:else}
+    <p class="text-center text-2xl font-bold text-purple-500">Non hai schede personalizzate</p>
+  {/if}
 {:else if activeItem === "Crea una scheda personalizzata"}
   <div class="font-sans margin-bottom">
     <div class="relative min-h-screen flex flex-col items-center">
